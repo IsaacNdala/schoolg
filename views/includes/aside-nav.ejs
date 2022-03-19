@@ -1,0 +1,68 @@
+<aside id="sidebar">
+    <div class="logo-container bg-info">    
+        <h2 class="text-white logo"><a href="/" class="text-white">School G</a></h2> 
+        <h2 class="text-white logo-mobile"><a href="/" class="text-white">S.G</a></h2>   
+    </div>
+    <nav class="aside-nav">
+        <li class="aside-nav-item">
+            <a href="/">
+                <i class="fa fa-dashboard <%= path === '/dashboard' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/dashboard' ? 'active-span' : '' %>">Painel de Controle</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/alunos">
+                <i class="fa fa-graduation-cap <%= path === '/alunos' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/alunos' ? 'active-span' : '' %>">Alunos</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/encarregados">
+                <i class="fa fa-black-tie <%= path === '/encarregados' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/encarregados' ? 'active-span' : '' %>">Encarregados</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/funcionarios">
+                <i class="fa fa-users <%= path === '/funcionarios' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/funcionarios' ? 'active-span' : '' %>">Funcionários</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/professores">
+                <i class="fa fa-user <%= path === '/professores' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/professores' ? 'active-span' : '' %>">Professores</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/cursos">
+                <i class="fa fa-flask <%= path === '/cursos' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/cursos' ? 'active-span' : '' %>">Cursos</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/disciplinas">
+                <i class="fa fa-book <%= path === '/disciplinas' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/disciplinas' ? 'active-span' : '' %>">Disciplinas</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/turmas">
+                <i class="fa fa-sort-alpha-asc <%= path === '/turmas' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/turmas' ? 'active-span' : '' %>">Turmas</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/classes">
+                <i class="fa fa-sort-numeric-asc <%= path === '/classes' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/classes' ? 'active-span' : '' %>">Classes</span>
+            </a>
+        </li>
+        <li class="aside-nav-item">
+            <a href="/salas">
+                <i class="fa fa-arrow-circle-up <%= path === '/salas' ? 'active-icon' : '' %>"></i> 
+                <span class="ml-2 <%= path === '/salas' ? 'active-span' : '' %>">Salas</span>
+            </a>
+        </li>
+    </nav>
+</aside>

@@ -1,0 +1,59 @@
+<div class="modal fade" id="infoPessoal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <form action="/perfil/info-pessoal/edit" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title font-weight-bold"><i class="fa <%= loggedFun.sexo === 'Masculino' ? 'fa-male' : 'fa-female' %>"></i> Informação Pessoal</h7>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-lg-12">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Completo" value="<%= loggedFun.nome %>" maxlength="120" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-8 mt-1">
+                        <label for="dtNascimento">Data de Nascimento: <%= dtNasc %></label>
+                        <input type="date" class="form-control" id="dtNascimento" name="dtNascimento">
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="sexo">Sexo</label>
+                        <select class="form-control" id="sexo" name="sexo" required>
+                            <option></option>
+                            <% if (loggedFun.sexo === 'Masculino') { %>
+                                <option value="Masculino" selected>Masculino</option>
+                                <option value="Femenino">Femenino</option>
+                            <% } else { %>
+                                <option value="Masculino">Masculino</option>
+                                <option value="Femenino" selected>Femenino</option>
+                            <% } %>
+                        </select>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-5 mt-1">
+                        <label for="codBi">Nº do BI</label>
+                        <input type="text" class="form-control" name="codBi" id="codBi" placeholder="Número do BI" value="<%= loggedFun.codBi %>" maxlength="14" required>
+                    </div>
+            
+                    <div class="form-group col-lg-7 mt-1">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" class="form-control" name="endereco" id="endereco" placeholder="Província, Município, Bairro" value="<%= loggedFun.endereco %>" maxlength="120" required>
+                    </div>
+                </div>
+                <input type="hidden" name="funId" value="<%= loggedFun.id %>">
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</button>
+            </div>
+        </form>
+    </div>
+</div>

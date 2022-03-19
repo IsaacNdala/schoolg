@@ -1,0 +1,85 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-black-tie mr-2"></i> <a href="/encarregados">Encarregados</a> / Editar</h6>
+        <hr  class="mb-4">
+
+        <!-- Tabela -->
+        <% if(encarregado) { %>
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+            <form class="table-responsive" action="/encarregados/edit" method="POST">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>   
+                        <h5 class="mb-2 font-weight-bold"><i class="fa fa-pencil"></i> Editar Encarregado</h5>
+                    <tr>
+                        <td>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome do encarregado" value="<%= encarregado.nome %>" maxlength="120" required>
+                                </div>
+                            </div> 
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="perentesco">Grau Paresteco</label>
+                                    <select class="form-control" id="parentesco" name="parentesco" required>
+                                        <option></option>
+                                        <% if (encarregado.parentesco === 'Pai') { %>
+                                            <option value="Pai" selected>Pai</option>
+                                            <option value="Mãe">Mãe</option>
+                                            <option value="Outro">Outro</option>
+                                        <% } else if (encarregado.parentesco === 'Mãe') { %>
+                                            <option value="Pai">Pai</option>
+                                            <option value="Mãe" selected>Mãe</option>
+                                            <option value="Outro">Outro</option>
+                                        <% } else { %>
+                                            <option value="Pai">Pai</option>
+                                            <option value="Mãe">Mãe</option>
+                                            <option value="Outro" selected>Outro</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="telefone">Telefone</label>
+                                    <input type="text" class="form-control" name="telefone" id="telefone" placeholder="Nº do telefone" value="<%= encarregado.telefone %>" maxlength="120" required>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="email">E-mail</label>
+                                    <input type="text" class="form-control" name="email" id="email" placeholder="E-mail" value="<%= encarregado.email %>" maxlength="120" required>
+                            </div>   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="encarregadoId" value="<%= encarregado.id %>">
+                            <input type="hidden" name="userId" value="<%= loggedUser.id %>">
+
+                            <div class="form-row">
+                                <a href="/encarregados" class="btn btn-danger mr-2">Cancelar</a>
+                                <button class="btn btn-info" type="submit">Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        </div>
+        <% } %>
+    </section>
+
+<%- include('../includes/footer.ejs') %>

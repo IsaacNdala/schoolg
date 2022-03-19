@@ -1,0 +1,88 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <!-- Navigation -->
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-user-o mr-2"></i> Perfil </h6>
+        <hr  class="mb-4">
+
+        <!-- Alert -->
+        <%- include('../includes/alert.ejs') %>
+
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="font-weight-bold m-0"><i class="fa fa-info-circle"></i> Minhas Informações </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                    <img src="/img/<%= loggedFun.foto %>" alt="user " class="fun-img mb-4">
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa <%= loggedFun.sexo === 'Masculino' ? 'fa-male' : 'fa-female' %>"></i> Informação Pessoal:</h5>
+                            <p><span class="detail-span">Nome Completo:</span> <%= loggedFun.nome %></p>
+                            
+                            <%
+                                let data = loggedFun.dtNascimento                                                  
+                                let dia = data[8] + data[9];
+                                let mes = data[5] + data[6];
+                                let ano = data[0] + data[1] + data[2] + data[3];
+                                const dtNasc = dia + '/' + mes + '/' + ano;
+
+                                let idade = new Date().getFullYear() - +ano;
+                            %>
+
+                            <p><span class="detail-span">Data de Nascimento:</span> <%= dtNasc %></p>
+                            <p><span class="detail-span">Idade:</span> <%= idade %></p>
+                            <p><span class="detail-span">Sexo:</span> <%= loggedFun.sexo %></p>
+                            <p><span class="detail-span">Portador do BI nº:</span> <%= loggedFun.codBi %></p>
+                            <p><span class="detail-span">Reside em:</span> <%= loggedFun.endereco %></p>
+                            <p><a href="#" data-toggle="modal" data-target="#infoPessoal"><i class="fa fa-edit"></i> Editar</a></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-suitcase"></i> Informação Profissional:</h5>
+                            <p><span class="detail-span">Função:</span> <%= loggedFuncao.designacao %></p>
+                            <p><span class="detail-span">Salário:</span> <%= loggedFun.salario %> kz</p>
+                            <p><span class="detail-span">Conta Bancária:</span> <%= loggedFun.numConta %></p>
+                            <p><a href="#" data-toggle="modal" data-target="#infoProfissional"><i class="fa fa-edit"></i> Editar</a></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"> <i class="fa fa-phone"></i> Contactos:</h5>
+                            <p><span class="detail-span">Tel:</span> <%= loggedFun.telefone %></p>
+                            <p><span class="detail-span">Email:</span> <%= loggedFun.email %></p>
+                            <p><a href="#" data-toggle="modal" data-target="#contactos"><i class="fa fa-edit"></i> Editar</a></p>
+                        </td>
+                    </tr>
+                    <% if(loggedFun.email !== 'demo@user.com') { %>
+                    <tr>
+                        <td>
+                            <p><a href="#" class="btn btn-info" data-toggle="modal" data-target="#editPassword"><i class="fa fa-lock"></i> Alterar senha</a></p>
+                        </td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Edit-Forms -->
+    <%- include('./edit-info-pessoal.ejs', { dtNasc: dtNasc }) %>
+    <%- include('./edit-info-profissional.ejs') %>
+    <%- include('./edit-contactos.ejs') %>
+    <%- include('./edit-password.ejs') %>
+
+<%- include('../includes/footer.ejs', {path: path}) %>

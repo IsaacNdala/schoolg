@@ -1,0 +1,158 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-graduation-cap mr-2"></i> <a href="/alunos">Aluno</a> / <a href="/alunos/detalhes/<%= aluno.id %>">Detalhes</a> / Editar</h6>
+        <hr  class="mb-4">
+
+        <!-- Tabela -->
+        <% if(aluno) { %>
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-pencil"></i> Editar aluno</h6>
+        </div>
+        <div class="card-body">
+            <form class="table-responsive" action="/aluno/edit" method="POST" enctype="multipart/form-data">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                    <img src="/img/<%= aluno.foto %>" alt="user " class="fun-img mb-4">
+                    <p class="mb-3">
+                        <label for="foto">Alterar a foto</label>
+                        <input type="file" name="foto" id="foto">
+                    </p>    
+                        
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa <%= aluno.sexo === 'Masculino' ? 'fa-male' : 'fa-female' %>"></i> Informação Pessoal:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="nome">Nome Completo</label>
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Completo" value="<%= aluno.nome %>" maxlength="120" required>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="dtNascimento">Data de Nascimento: <%= dtNasc %></label>
+                                    <input type="date" class="form-control" id="dtNascimento" name="dtNascimento">
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="sexo">Sexo</label>
+                                    <select class="form-control" id="sexo" name="sexo" required>
+                                        <option></option>
+                                        <% if (aluno.sexo === 'Masculino') { %>
+                                            <option value="Masculino" selected>Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        <% } else { %>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino" selected>Femenino</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="estadoCivil">Estado Civil</label>
+                                    <select class="form-control" id="estadoCivil" name="estadoCivil" required>
+                                        <option></option>
+                                        <% if (aluno.estadoCivil === 'Solteiro') { %>
+                                            <option value="Solteiro" selected>Solteiro</option>
+                                            <option value="Casado">Casado</option>
+                                        <% } else { %>
+                                            <option value="Solteiro">Solteiro</option>
+                                            <option value="Casado" selected>Casado</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="codBi">Número do BI</label>
+                                    <input type="text" class="form-control" id="codBi" name="codBi" value="<%= aluno.codBi %>" maxlength="14" required>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-map-marker"></i> Endereço:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="provinciaId">Província</label>
+                                    <input type="text" name="endereco" class="form-control" value="<%= aluno.endereco %>">
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="encarregadoId">Encarregado</label>
+                                    <select class="form-control" id="encarregadoId" name="encarregadoId" required>
+                                        <option></option>
+                                        <% if (encarregados.length > 0) { %>
+                                            <% for(let encarregado of encarregados) { %>
+                                                <% if (encarregado.id === aluno.encarregadoId) { %>
+                                                    <option value="<%= encarregado.id %>" selected><%= encarregado.nome %></option>
+                                                <% } else { %>
+                                                    <option value="<%= encarregado.id %>"><%= encarregado.nome %></option>
+                                                <% } %>
+                                            <% } %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-graduation-cap"></i> Informação Acadêmica:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="numProcesso">Nº de Processo</label>
+                                    <input type="number" class="form-control" id="numProcesso" name="numProcesso" value="<%= aluno.numProcesso %>" required>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-phone"></i> Contactos:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="telefone">Tel</label>
+                                    <input type="number" class="form-control" id="telefone" name="telefone" value="<%= aluno.telefone %>" required>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" value="<%= aluno.email %>" maxlength="120" required>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="alunoId" value="<%= aluno.id %>">
+                            <input type="hidden" name="userId" value="<%= loggedUser.id %>">
+
+                            <div class="form-row">
+                                <a href="/alunos/detalhes/<%= aluno.id %>" class="btn btn-danger mr-2">Cancelar</a>
+                                <button class="btn btn-info" type="submit"><i class="fa fa-pencil"></i> Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        </div>
+        <% } else { %>
+            <h1 class="mt-5 text-center text-danger">404</h1>
+            <h4 class="text-center">Página Inexistente!</h4>
+        <% } %>
+    </section>
+
+<%- include('../includes/footer.ejs', {path: path}) %>

@@ -1,0 +1,302 @@
+
+{
+  "header": {
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200818.121801.12828.0.001.json",
+    "dumpEventTime": "2020-08-18T12:18:01Z",
+    "dumpEventTimeStamp": "1597749481806",
+    "processId": 12828,
+    "cwd": "C:\\Users\\Isaac\\Desktop\\projects\\school g",
+    "commandLine": [
+      "C:\\Program Files\\nodejs\\node.exe",
+      "teste.js"
+    ],
+    "nodejsVersion": "v12.5.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.5.0",
+      "v8": "7.5.288.22-node.14",
+      "uv": "1.29.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.38.0",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.5.0/node-v12.5.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.5.0/node-v12.5.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.5.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.14393",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Celeron(R) CPU  N2840  @ 2.16GHz",
+        "speed": 2167,
+        "user": 32271765,
+        "nice": 0,
+        "sys": 37934343,
+        "idle": 94750031,
+        "irq": 1367984
+      },
+      {
+        "model": "Intel(R) Celeron(R) CPU  N2840  @ 2.16GHz",
+        "speed": 2167,
+        "user": 32271765,
+        "nice": 0,
+        "sys": 37934343,
+        "idle": 94750031,
+        "irq": 1367984
+      }
+    ],
+    "host": "IsastarPC"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6b6d96e09",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10889"
+    },
+    {
+      "pc": "0x00007ff6b6d9a704",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+25476"
+    },
+    {
+      "pc": "0x00007ff6b6d99728",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+21416"
+    },
+    {
+      "pc": "0x00007ff6b6e82f5b",
+      "symbol": "v8::base::CPU::has_sse+38011"
+    },
+    {
+      "pc": "0x00007ff6b7667e2e",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff6b765017a",
+      "symbol": "v8::SharedArrayBuffer::Externalize+842"
+    },
+    {
+      "pc": "0x00007ff6b74e197c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff6b74f55ad",
+      "symbol": "v8::internal::Factory::AllocateRawFixedArray+61"
+    },
+    {
+      "pc": "0x00007ff6b74fd074",
+      "symbol": "v8::internal::Factory::NewFixedArrayWithFiller+52"
+    },
+    {
+      "pc": "0x00007ff6b74fd031",
+      "symbol": "v8::internal::Factory::NewFixedArray+65"
+    },
+    {
+      "pc": "0x00007ff6b754a63e",
+      "symbol": "v8::debug::Script::GetIsolate+5614"
+    },
+    {
+      "pc": "0x00007ff6b72de953",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+181731"
+    },
+    {
+      "pc": "0x00007ff6b7710b1d",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+614605"
+    },
+    {
+      "pc": "0x00000023dd284a10",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2696867840,
+    "totalCommittedMemory": 2696867840,
+    "usedMemory": 2662229336,
+    "availableMemory": 17119648,
+    "memoryLimit": 2134900736,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31960,
+        "available": 229872
+      },
+      "new_space": {
+        "memorySize": 33554432,
+        "committedMemory": 33554432,
+        "capacity": 16757248,
+        "used": 0,
+        "available": 16757248
+      },
+      "old_space": {
+        "memorySize": 1716224,
+        "committedMemory": 1716224,
+        "capacity": 1424336,
+        "used": 1291808,
+        "available": 132528
+      },
+      "code_space": {
+        "memorySize": 425984,
+        "committedMemory": 425984,
+        "capacity": 156768,
+        "used": 156768,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 266240,
+        "committedMemory": 266240,
+        "capacity": 167200,
+        "used": 167200,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 1758081024,
+        "committedMemory": 1758081024,
+        "capacity": 1758067168,
+        "used": 1758067168,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3552,
+        "used": 3552,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 902512640,
+        "committedMemory": 902512640,
+        "capacity": 902510880,
+        "used": 902510880,
+        "available": 0
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 7.531,
+    "kernelCpuSeconds": 3.187,
+    "cpuConsumptionPercent": 38.2786,
+    "maxRss": 2428907520,
+    "pageFaults": {
+      "IORequired": 956615,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 1,
+      "writes": 6
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\Isaac\\AppData\\Roaming",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "ISASTARPC",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\Isaac",
+    "LOCALAPPDATA": "C:\\Users\\Isaac\\AppData\\Local",
+    "LOGONSERVER": "\\\\ISASTARPC",
+    "NUMBER_OF_PROCESSORS": "2",
+    "OneDrive": "C:\\Users\\Isaac\\OneDrive",
+    "OneDriveConsumer": "C:\\Users\\Isaac\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\Users\\Isaac\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files\\Microsoft SQL Server\\120\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files\\kubectl;C:\\Program Files\\helm\\windows-amd64;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Users\\Isaac\\AppData\\Local\\Microsoft\\WindowsApps;C:\\flutter\\bin;C:\\Users\\Isaac\\AppData\\Local\\GitHubDesktop\\bin;C:\\Users\\Isaac\\AppData\\Roaming\\npm;C:\\Users\\Isaac\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Program Files\\MongoDB\\Server\\4.2\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "Intel64 Family 6 Model 55 Stepping 8, GenuineIntel",
+    "PROCESSOR_LEVEL": "6",
+    "PROCESSOR_REVISION": "3708",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PSModulePath": "C:\\Users\\Isaac\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\",
+    "PT7HOME": "C:\\Program Files\\Cisco Packet Tracer 7.2.2",
+    "PUBLIC": "C:\\Users\\Public",
+    "QT_DEVICE_PIXEL_RATIO": "auto",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\Isaac\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\Isaac\\AppData\\Local\\Temp",
+    "USERDOMAIN": "ISASTARPC",
+    "USERDOMAIN_ROAMINGPROFILE": "ISASTARPC",
+    "USERNAME": "Isaac",
+    "USERPROFILE": "C:\\Users\\Isaac",
+    "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
+    "VS140COMNTOOLS": "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\",
+    "windir": "C:\\WINDOWS",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.38.1",
+    "LANG": "pt_BR.UTF-8",
+    "COLORTERM": "truecolor"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\SYSTEM32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\System32\\wshbth.dll"
+  ]
+}

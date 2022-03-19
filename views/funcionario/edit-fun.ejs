@@ -1,0 +1,151 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-users mr-2"></i> <a href="/funcionarios">Funcionários</a> / <a href="/funcionarios/detalhes/<%= funcionario.id %>">Detalhes</a> / Editar</h6>
+        <hr  class="mb-4">
+
+        <!-- Tabela -->
+        <% if(funcionario) { %>
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-pencil"></i> Editar funcionário</h6>
+        </div>
+        <div class="card-body">
+            <form class="table-responsive" action="/funcionario/edit" method="POST" enctype="multipart/form-data">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                    <img src="/img/<%= funcionario.foto %>" alt="user " class="fun-img mb-4">
+                    <p class="mb-3">
+                        <label for="foto">Alterar a foto</label>
+                        <input type="file" name="foto" id="foto">
+                    </p>    
+                        
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa <%= funcionario.sexo === 'Masculino' ? 'fa-male' : 'fa-female' %>"></i> Informação Pessoal:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="nome">Nome Completo</label>
+                                    <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Completo" value="<%= funcionario.nome %>" maxlength="120" required>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="dtNascimento">Data de Nascimento: <%= dtNasc %></label>
+                                    <input type="date" class="form-control" id="dtNascimento" name="dtNascimento">
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="sexo">Sexo</label>
+                                    <select class="form-control" id="sexo" name="sexo" required>
+                                        <option></option>
+                                        <% if (funcionario.sexo === 'Masculino') { %>
+                                            <option value="Masculino" selected>Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        <% } else { %>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino" selected>Femenino</option>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="codBi">Número do BI</label>
+                                    <input type="text" class="form-control" id="codBi" name="codBi" value="<%= funcionario.codBi %>" maxlength="14" required>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-map-marker"></i> Endereço:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="provinciaId">Província</label>
+                                    <input class="form-control" type="text" name="endereco" value="<%= funcionario.endereco %>">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-suitcase"></i> Informação Profissional:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="funcaoId">Função</label>
+                                    <select class="form-control" id="funcaoId" name="funcaoId" required>
+                                        <option></option>
+                                        <% if (funcao.length > 0) { %>
+                                            <% for(let f of funcao) { %>
+                                                <% if (f.id === funcionario.funcaoId) { %>
+                                                    <option value="<%= f.id %>" selected><%= f.designacao %></option>
+                                                <% } else { %>
+                                                    <option value="<%= f.id %>"><%= f.designacao %></option>
+                                                <% } %>
+                                            <% } %>
+                                        <% } else { %>
+                                            <a href="/funcionarios/funcao"><i class="fa fa-plus-circle"></i> Adicionar função</a>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="salario">Salário</label>
+                                    <input type="number" class="form-control" id="salario" name="salario" value="<%= funcionario.salario %>" required>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="numConta">Conta Bancária</label>
+                                    <input type="number" class="form-control" id="numConta" name="numConta" value="<%= funcionario.numConta %>" required>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-phone"></i> Contactos:</h5>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="telefone">Tel</label>
+                                    <input type="number" class="form-control" id="telefone" name="telefone" value="<%= funcionario.telefone %>" required>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" value="<%= funcionario.email %>" maxlength="120" required>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="funId" value="<%= funcionario.id %>">
+                            <input type="hidden" name="userId" value="<%= user.id %>">
+
+                            <div class="form-row">
+                                <a href="/funcionarios/detalhes/<%= funcionario.id %>" class="btn btn-danger mr-2">Cancelar</a>
+                                <button class="btn btn-info" type="submit"><i class="fa fa-pencil"></i> Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        </div>
+        <% } else { %>
+            <h1 class="mt-5 text-center text-danger">404</h1>
+            <h4 class="text-center">Página Inexistente!</h4>
+        <% } %>
+    </section>
+
+<%- include('../includes/footer.ejs', {path: path}) %>

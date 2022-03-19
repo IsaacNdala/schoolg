@@ -1,0 +1,141 @@
+<div class="modal fade" id="addAluno" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <form action="/aluno/add" method="POST" class="modal-content" enctype="multipart/form-data">
+            <div class="modal-header">
+                <h7 class="modal-title font-weight-bold"><i class="fa fa-plus-circle"></i> Adicionar Aluno</h7>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-lg-7">
+                        <label for="anome">Nome Completo</label>
+                        <input type="text" class="form-control" name="anome" id="anome" placeholder="Nome Completo" maxlength="120" required>                    
+                    </div>
+                    <div class="form-group col-lg-5">
+                        <label for="dtNnascimento">Data de Nascimento</label>
+                        <input type="date" class="form-control" id="dtNascimento" name="dtNascimento" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="sexo">Sexo</label>
+                        <select class="form-control" id="sexo" name="sexo" required>
+                            <option></option>
+                            <option value="Masculino">Masculino</option>
+                            <option value="Femenino">Femenino</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="estadoCivil">Estado Civíl</label>
+                        <select class="form-control" id="estadoCivil" name="estadoCivil" required>
+                            <option></option>
+                            <option value="Solteiro">Solteiro</option>
+                            <option value="Casado">Casado</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="codBi">Nº do BI</label>
+                        <input type="text" class="form-control" name="codBi" id="codBi" placeholder="Deve conter 14 dígitos" maxlength="14" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="telefone">Tel</label>
+                        <input type="number" class="form-control" name="telefone" id="telefone" placeholder="9 dígitos sem espaço" required>
+                    </div>
+                    <div class="form-group col-lg-8 mt-1">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" id="email" placeholder="Email" maxlength="120" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-12 mt-1">
+                        <label for="endereco">Endereço</label>
+                        <input type="text" class="form-control" name="endereco" placeholder="Província, Município, Bairro">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="cursoId">Curso</label>
+                        <select class="form-control" id="cursoId" name="cursoId" required>
+                            <option></option>
+                            <% if(cursos.length > 0) { %>
+                                <% for(let curso of cursos) { %>
+                                    <option value="<%= curso.id %>"><%= curso.designacao %></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="classeId">Classe</label>
+                        <select class="form-control" id="classeId" name="classeId" required>
+                            <option></option>
+                            <% if(classes.length > 0) { %>
+                                <% for(let classe of classes) { %>
+                                    <option value="<%= classe.id %>">
+                                        <%= parseInt(classe.designacao) === parseInt(classe.designacao) ? classe.designacao + 'ª classe' : classe.designacao %>
+                                    </option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="turno">Turno</label>
+                        <select class="form-control" id="turno" name="turno" required>
+                            <option></option>
+                            <option value="Manhã">Manhã</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Noite">Noite</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-lg-5 mt-1">
+                        <label for="encarregadoId">Encarregado</label>
+                        <select class="form-control" id="encarregadoId" name="encarregadoId" required>
+                            <option></option>
+                            <% if(encarregados.length > 0) { %>
+                                <% for(let encarregado of encarregados) { %>
+                                    <option value="<%= encarregado.id %>"><%= encarregado.nome %></option>
+                                <% } %>
+                            <% } else { %>
+                                <option>Sem encarregado! Adicione</option>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="numProcesso">Nº Processo</label>
+                        <input type="number" class="form-control" name="numProcesso" id="numProcesso" placeholder="Nº de Processo" required>
+                    </div>
+                    <div class="form-group col-lg-3 mt-1">
+                        <label for="anoLectivo">Ano Lectivo</label>
+                        <input type="number" class="form-control" name="anoLectivo" id="anoLectivo" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group mt-1">
+                        <label for="foto">Fotografia</label>
+                        <input type="file" class="btn btn-default" id="foto" name="foto" required>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger"><i class="fa fa-trash-o"></i> Limpar</button>
+                <button type="submit" id="enviar" class="btn btn-info"><i class="fa fa-plus-circle"></i> Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('anoLectivo').value = new Date().getFullYear();
+</script>

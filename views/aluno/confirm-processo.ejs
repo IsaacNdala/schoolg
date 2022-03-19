@@ -1,0 +1,45 @@
+<div class="modal fade" id="confirmProcesso" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <form action="/aluno/confirm-processo" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title font-weight-bold"><i class="fa fa-graduation-cap"></i> Confirmar Matrícula</h7>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-lg-5 mt-1">
+                        <label for="numProcesso">Número de Processo</label>
+                        <input type="number" class="form-control" name="numProcesso" id="numProcesso" placeholder="Nº de processo" required>                    
+                    </div>
+                    <div class="form-group col-lg-4 mt-1">
+                        <label for="turmaId">Turma</label>
+                        <select class="form-control" id="turmaId" name="turmaId" required>
+                            <option></option>
+                            <% if(turmas.length > 0) { %>
+                                <% for(let turma of turmas) { %>
+                                    <option value="<%= turma.id %>"><%= turma.designacao %></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-3 mt-1">
+                        <label for="canoLectivo">Ano Lectivo</label>
+                        <input type="number" class="form-control" name="canoLectivo" id="canoLectivo" required>                    
+                    </div>
+                </div>
+            </div>
+    
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                <button type="submit" id="enviar" class="btn btn-info">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById('canoLectivo').value = new Date().getFullYear();
+</script>

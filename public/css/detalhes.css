@@ -1,0 +1,25 @@
+tbody {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+tr {
+    border-top: .3px solid #cececec5;
+}
+
+td {
+    border-top: none !important;
+}
+
+.fun-img {
+    width: 200px;
+}
+
+span.detail-span {
+    font-size: .9rem;
+    font-weight: bold;
+}
+
+.p-modal {
+    font-family: 'open-sans', sans-serif !important;
+}

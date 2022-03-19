@@ -1,0 +1,53 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-arrow-circle-up mr-2"></i> <a href="/salas">Salas</a> / Editar</h6>
+        <hr  class="mb-4">
+
+        <!-- Tabela -->
+        <% if(sala) { %>
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+            <form class="table-responsive" action="/salas/edit" method="POST">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>   
+                        <h5 class="mb-2 font-weight-bold"><i class="fa fa-pencil"></i> Editar sala</h5>
+                    <tr>
+                        <td>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="sdesignacao">Sala</label>
+                                    <input type="text" class="form-control" name="sdesignacao" id="sdesignacao" placeholder="Sala" value="<%= sala.designacao %>" maxlength="120" required>
+                                </div>
+                            </div>  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="salaId" value="<%= sala.id %>">
+                            <input type="hidden" name="userId" value="<%= loggedUser.id %>">
+
+                            <div class="form-row">
+                                <a href="/salas" class="btn btn-danger mr-2">Cancelar</a>
+                                <button class="btn btn-info" type="submit">Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        </div>
+        <% } %>
+    </section>
+
+<%- include('../includes/footer.ejs') %>

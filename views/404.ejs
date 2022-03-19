@@ -1,0 +1,13 @@
+<%- include('./includes/header.ejs') %>
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('./includes/header-nav.ejs') %>
+    <%- include('./includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h1 class="mt-5 text-center text-danger">404</h1>
+        <h4 class="text-center">Página Inexistente!</h4>
+    </section>
+
+<%- include('./includes/footer.ejs', {path: path}) %>

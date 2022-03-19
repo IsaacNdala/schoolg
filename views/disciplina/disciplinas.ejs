@@ -1,0 +1,83 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./add-disciplina.ejs') %>
+
+    <!--DELETE MODAL -->
+    <% if(disciplinas.length > 0) { %>
+        <% for (let disciplina of disciplinas) { %>
+            <%- include('./delete-disciplina.ejs', {disciplina: disciplina }) %>
+    <% } } %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-book mr-2"></i> Disciplinas</h6>
+        <hr class="mb-3">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-book"></i> Disciplinas:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Disciplina</th>
+                    <th>Data/Hora</th>  
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Disciplina</th>
+                    <th>Data/Hora</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <% if(disciplinas.length > 0) { %>
+                       <% for (let disciplina of disciplinas) { %>
+                        <tr class="dt-text">
+                            <td><%= parseInt(disciplina.designacao) === parseInt(disciplina.designacao) ? disciplina.designacao + 'ª disciplina' : disciplina.designacao %></td>
+                            
+                            <%- include('../includes/data.ejs', {dateTime: disciplina}) %>
+                            <td class="text-center">
+                                <form action="/disciplinas/editar" method="POST">
+                                    <input type="hidden" name="disciplinaId" value="<%= disciplina.id %>">
+                                    <button type="submit" class="btn btn-dark"><i class="fa fa-pencil"></i></button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" data-toggle="modal" data-target="#deleteDisciplina<%= disciplina.id %>" class="btn btn-dark">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="text-center"><h5>Sem Disciplinas!</h5></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <a href="#" data-toggle="modal" data-target="#addDisciplina" class="btn-info add-btn">
+        <i class="fa fa-plus"></i>
+    </a>
+
+<%- include('../includes/footer.ejs') %>

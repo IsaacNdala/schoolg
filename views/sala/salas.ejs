@@ -1,0 +1,83 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./add-sala.ejs') %>
+
+    <!--DELETE MODAL -->
+    <% if(salas.length > 0) { %>
+        <% for (let sala of salas) { %>
+            <%- include('./delete-sala.ejs', {sala: sala }) %>
+    <% } } %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-arrow-circle-up mr-2"></i> Salas</h6>
+        <hr class="mb-3">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-arrow-circle-up"></i> Salas:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Sala</th>
+                    <th>Data/Hora</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Sala</th>
+                    <th>Data/Hora</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <% if(salas.length > 0) { %>
+                       <% for (let sala of salas) { %>
+                        <tr class="dt-text">
+                            <td><%= sala.designacao %></td>
+                            
+                            <%- include('../includes/data.ejs', {dateTime: sala}) %>
+                            <td class="text-center">
+                                <form action="/salas/editar" method="POST">
+                                    <input type="hidden" name="salaId" value="<%= sala.id %>">
+                                    <button type="submit" class="btn btn-dark"><i class="fa fa-pencil"></i></button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" data-toggle="modal" data-target="#deleteSala<%= sala.id %>" class="btn btn-dark">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="text-center"><h5>Sem Salas!</h5></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <a href="#" data-toggle="modal" data-target="#addSala" class="btn-info add-btn">
+        <i class="fa fa-plus"></i>
+    </a>
+
+<%- include('../includes/footer.ejs') %>

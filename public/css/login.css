@@ -1,0 +1,64 @@
+@font-face {
+    font-family: "open-sans";
+        src: url("../fonts/fonts/OpenSans-Regular.ttf");
+    }
+
+.logo-container {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 9rem;
+    padding: 1rem;
+    font-family: 'yan-light', sans-serif;
+    border: 1px solid #dbdce2;
+    border-bottom: none;
+}
+
+.form-container {
+    font-family: 'open-sans', Arial, Helvetica, sans-serif;
+    font-size: 14px; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 2rem;
+    border: 1px solid #dbdce2;
+    border-top: none;
+}
+
+.form-control, .btn {
+    border-radius: 0 !important; 
+}
+
+.form-control {
+    box-shadow: none !important;
+}
+
+.row-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alert-container {
+    position: absolute;
+    top: 0;
+    padding-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.alert {
+    text-align: center;
+    width: 90%;
+}
+
+@media (min-width: 441px) {
+    .logo-container, .form-container, .alert {
+        width: 25rem;
+    }
+
+    .form-container {
+        padding: 3rem;
+    }
+}

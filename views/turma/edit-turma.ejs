@@ -1,0 +1,112 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-sort-alpha-asc mr-2"></i> <a href="/turmas">Turmas</a> / Editar</h6>
+        <hr  class="mb-4">
+
+        <!-- Tabela -->
+        <% if(turma) { %>
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+        </div>
+        <div class="card-body">
+            <form class="table-responsive" action="/turmas/edit" method="POST">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>   
+                        <h5 class="mb-2 font-weight-bold"><i class="fa fa-pencil"></i> Editar turma</h5>
+                    <tr>
+                        <td>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="tdesignacao">Turma</label>
+                                    <input type="text" class="form-control" name="tdesignacao" id="tdesignacao" placeholder="Turma" value="<%= turma.designacao %>" maxlength="120" required>
+                                </div>
+                            </div>  
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="cursoId">Curso</label>
+                                    <select name="cursoId" id="cursoId" class="form-control">
+                                        <option></option>
+                                        <% if(cursos.length > 0) { %>
+                                            <% for (const curso of cursos) { %>
+                                                <% if(curso.id === turma.cursoId) { %>
+                                                    <option value="<%= curso.id %>" selected><%= curso.designacao %></option>
+                                                <% } else { %>    
+                                                    <option value="<%= curso.id %>"><%= curso.designacao %></option>
+                                                <% } %>
+                                            <% } %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="classeId">Classe</label>
+                                    <select name="classeId" id="classeId" class="form-control">
+                                        <option></option>
+                                        <% if(classes.length > 0) { %>
+                                            <% for(const classe of classes) { %>
+                                                <% if (classe.id === turma.classeId) { %>
+                                                    <option value="<%= classe.id %>" selected>
+                                                        <%= parseInt(classe.designacao) === parseInt(classe.designacao) ? classe.designacao + 'ª classe' : classe.designacao %>
+                                                    </option>
+                                                <% } else { %>
+                                                    <option value="<%= classe.id %>">
+                                                        <%= parseInt(classe.designacao) === parseInt(classe.designacao) ? classe.designacao + 'ª classe' : classe.designacao %>
+                                                    </option>
+                                                <% } %>
+                                            <% } %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <div class="form-group col-lg-12">
+                                    <label for="salaId">Sala</label>
+                                    <select name="salaId" id="salaId" class="form-control">
+                                        <option></option>
+                                        <% if(salas.length > 0) { %>
+                                            <% for(const sala of salas) { %>
+                                                <% if (sala.id === turma.salaId) { %>
+                                                    <option value="<%= sala.id %>" selected>
+                                                        <%= sala.designacao %>
+                                                    </option>
+                                                <% } else { %>
+                                                    <option value="<%= sala.id %>">
+                                                        <%= sala.designacao %>
+                                                    </option>
+                                                <% } %>
+                                            <% } %>
+                                        <% } %>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="hidden" name="turmaId" value="<%= turma.id %>">
+                            <input type="hidden" name="userId" value="<%= loggedUser.id %>">
+
+                            <div class="form-row">
+                                <a href="/turmas" class="btn btn-danger mr-2">Cancelar</a>
+                                <button class="btn btn-info" type="submit">Editar</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </form>
+        </div>
+        </div>
+        <% } %>
+    </section>
+
+<%- include('../includes/footer.ejs') %>

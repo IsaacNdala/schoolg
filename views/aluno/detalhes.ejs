@@ -1,0 +1,111 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/css/detalhes.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <!-- Navigation -->
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./delete-aluno.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-graduation-cap mr-2"></i> <a href="/alunos">Alunos</a> / Detalhes</h6>
+        <hr  class="mb-4">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <!-- Tabela -->
+        <% if(aluno) { %>
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <a href="/alunos/detalhes/editar/<%= aluno.id %>" class="ml-2 btn btn-dark">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <a href="#" class="ml-2 btn btn-dark" data-toggle="modal" data-target="#deleteAluno">
+                <i class="fa fa-trash"></i>
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table" id="dataTable" width="100%" cellspacing="0">
+                <tbody>
+                    <img src="/img/<%= aluno.foto %>" alt="user " class="fun-img mb-4">
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa <%= aluno.sexo === 'Masculino' ? 'fa-male' : 'fa-female' %>"></i> Informação Pessoal:</h5>
+                            <p><span class="detail-span">Nome Completo:</span> <%= aluno.nome %></p>
+                            <p><span class="detail-span">Data de Nascimento:</span> <%= dtNasc %></p>
+                            <p><span class="detail-span">Idade:</span> <%= idade %></p>
+                            <p><span class="detail-span">Sexo:</span> <%= aluno.sexo %></p>
+                            <p><span class="detail-span">Portador do BI nº:</span> <%= aluno.codBi %></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-graduation-cap"></i> Informação Acadêmica:</h5>
+                            <p><span class="detail-span">Nº de Processo:</span> <%= aluno.numProcesso %></p>
+                            
+                            <div class="container">
+                                <ol>
+                                    <% if(matriculas.length > 0) { %>
+                                        <% for(const matricula of matriculas) { %>
+                                            <hr>
+                                            <li>
+                                                <span class="detail-span"> <h5><%= matricula.anoLectivo %></h5></span>
+                                                <ul>
+                                                    <li>
+                                                        <% if(cursos.length > 0) { %>
+                                                            <% for(const curso of cursos) { %>
+                                                                <% if(matricula.cursoId === curso.id) { %>
+                                                                    <li><span class="detail-span">Curso:</span> <%= curso.designacao %></li>
+                                                                <% } %>
+                                                            <% } %>
+                                                        <% } %>
+                                                        <% if(classes.length > 0) { %>
+                                                            <% for(const classe of classes) { %>
+                                                                <% if(matricula.classeId === classe.id) { %>
+                                                                    <li><span class="detail-span">Classe:</span> <%= parseInt(classe.designacao) === parseInt(classe.designacao) ? classe.designacao + 'ª classe' : classe.designacao %></li>
+                                                                <% } %>
+                                                            <% } %>
+                                                        <% } %>
+                                                        <% if(turmas.length > 0) { %>
+                                                            <% for(const turma of turmas) { %>
+                                                                <% if(matricula.turmaId === turma.id) { %>
+                                                                    <li><span class="detail-span">Turma:</span> <%= turma.designacao %></li>
+                                                                <% } %>
+                                                            <% } %>
+                                                        <% } %>
+                                                        <li><span class="detail-span">Turno:</span> <%= matricula.turno %></li>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        <% } %>
+                                    <% } %>
+                                </ol>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-map-marker"></i> Endereço:</h5>
+                            <p><span class="detail-span">Endereço:</span> <%= aluno.endereco %></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h5 class="mb-2"><i class="fa fa-phone"></i> Contactos:</h5>
+                            <p><span class="detail-span">Tel:</span> <%= aluno.telefone %></p>
+                            <p><span class="detail-span">Email:</span> <%= aluno.email %></p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+        <% } %>
+    </section>
+
+<%- include('../includes/footer.ejs', {path: path}) %>

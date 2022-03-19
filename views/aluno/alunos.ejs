@@ -1,0 +1,76 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./add-aluno.ejs') %>
+    <%- include('./confirm-processo.ejs') %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-graduation-cap mr-2"></i> Alunos</h6>
+        <hr  class="mb-4">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <a href="/alunos/exportar-pdf" class="btn btn-info mb-3"><i class="fa fa-file-pdf-o"></i> Exportar PDF</a>
+        <a href="/alunos/reciclagem" class="btn btn-info mb-3"><i class="fa fa-trash"></i> Reciclagem (<%= reciclados.length %>)</a>
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-graduation-cap"></i> Aluno:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>Número de Processo</th>
+                    <th>Sexo</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th class="text-center"><i class="fa fa-info-circle"></i></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Nome Completo</th>
+                    <th>Número de Processo</th>
+                    <th>Sexo</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th class="text-center"><i class="fa fa-info-circle"></i></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <% if(alunos.length > 0) { %>
+                       <% for (let aluno of alunos) { %>
+                        <tr class="dt-text">
+                            <td><%= aluno.nome %></td>
+                            <td><%= aluno.numProcesso %></td>
+                            <td><%= aluno.sexo %></td>
+                            <td><%= aluno.telefone %></td>
+                            <td><%= aluno.email %></td>
+                            <td><a href="/alunos/detalhes/<%= aluno.id %>"><i class="fa fa-plus-circle"></i> Detalhes...</a></td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="text-center"><h5>Sem aluno inscrito!</h5></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <a href="#" data-toggle="modal" data-target="#addAluno" class="btn-info add-btn">
+        <i class="fa fa-plus"></i>
+    </a>    
+
+<%- include('../includes/footer.ejs') %>

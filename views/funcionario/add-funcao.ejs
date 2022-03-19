@@ -1,0 +1,25 @@
+<div class="modal fade" id="addFuncao" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <form action="/funcoes/add" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title font-weight-bold"><i class="fa fa-plus-circle"></i> Adicionar Função</h7>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group mt-2 col-lg-8">
+                        <label for="fdesignacao">Função </label>
+                        <input type="text" class="form-control" name="fdesignacao" id="fdesignacao" placeholder="Adicione um cargo..." maxlength="120" required>                    
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger"><i class="fa fa-trash-o"></i> Limpar</button>
+                <button type="submit" id="enviar" class="btn btn-info"><i class="fa fa-plus-circle"></i> Adicionar</button>
+            </div>
+        </form>
+    </div>
+</div>

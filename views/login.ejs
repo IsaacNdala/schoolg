@@ -1,0 +1,55 @@
+<%- include('./includes/header.ejs') %>
+    <link rel="stylesheet" href="/css/login.css">
+    <title>
+        <%= pageTitle %>
+    </title>
+    </head>
+
+    <body>
+        <div class="alert-container">
+            <%- include('./includes/alert.ejs', {msgSuccess: msgSuccess, msgError: msgError}) %>
+        </div>
+        <div class="logo-container bg-info text-center">
+            <h2 class="text-white">School G</h2>
+        </div>
+
+        <div class="form-container bg-white">
+            <form action="/login" method="POST">
+                <div class="row">
+                    <input type="email" name="email" class="form-control" value="<%= emailValue ? emailValue : '' %>"
+                        placeholder="E-mail" required>
+                </div>
+                <div class="row mt-3">
+                    <input type="password" name="password" class="form-control" placeholder="Senha" required>
+                </div>
+                <div class="row d-flex row-btn mt-3">
+                    <a href="#" data-toggle="modal" data-target="#showCredentials">Mostrar Credenciais de Teste</a>
+                    <button class="btn bg-info text-white" type="submit">Entrar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Modal Mostrar Credenciais -->
+        <div class="modal fade" id="showCredentials" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+
+                <form action="/aluno/reciclagem/restaurar" method="POST" class="modal-content">
+                    <div class="modal-header">
+                        <h7 class="modal-title font-weight-bold"><i class="fa fa-lock"></i> Credenciais de Teste</h7>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p class="mb-2"><b>Email:</b> demo@user.com</p>
+                        <p>Senha: demouser123</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-dark" data-dismiss="modal">Fechar</button>
+                    </div>
+
+            </div>
+        </div>
+
+        <%- include('./includes/footer.ejs', {path: path}) %>

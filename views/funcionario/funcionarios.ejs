@@ -1,0 +1,80 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./form-modal.ejs', {
+        funcao: funcao
+    }) %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-users mr-2"></i> Funcionários</h6>
+        <hr  class="mb-4">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <a href="/funcionarios/exportar-pdf" class="btn btn-info mb-3"><i class="fa fa-file-pdf-o"></i> Exportar PDF</a>
+        <a href="/funcionarios/funcoes" class="btn btn-info mb-3"><i class="fa fa-asterisk"></i> Funções</a>
+        <a href="/funcionarios/reciclagem" class="btn btn-info mb-3"><i class="fa fa-trash"></i> Reciclagem (<%= reciclados.length %>)</a>
+
+
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-users"></i> Funcionários:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Função</th>
+                    <th>Sexo</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th class="text-center"><i class="fa fa-info-circle"></i></th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Nome</th>
+                    <th>Função</th>
+                    <th>Sexo</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th class="text-center"><i class="fa fa-info-circle"></i></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <% if(funcionarios.length > 0) { %>
+                       <% for (let fun of funcionarios) { %>
+                        <tr class="dt-text">
+                            <td><%= fun.nome %></td>
+                            <td><%= fun.funcao.designacao %></td>
+                            <td><%= fun.sexo %></td>
+                            <td><%= fun.telefone %></td>
+                            <td><%= fun.email %></td>
+                            <td><a href="<%= loggedFun.id === fun.id ? '/perfil' : '/funcionarios/detalhes/' + fun.id %>"><i class="fa fa-plus-circle"></i> Detalhes...</a></td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="text-center"><h5>Sem Funcionário Cadastrado!</h5></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <a href="#" data-toggle="modal" data-target="#formModal" class="btn-info add-btn">
+        <i class="fa fa-plus"></i>
+    </a>    
+
+<%- include('../includes/footer.ejs') %>

@@ -1,0 +1,39 @@
+<%
+let dia = dateTime.createdAt.toString()[8] 
++ dateTime.createdAt.toString()[9]; 
+
+let mes = dateTime.createdAt.toString()[4] 
++ dateTime.createdAt.toString()[5] 
++ dateTime.createdAt.toString()[6];
+
+let ano = dateTime.createdAt.toString()[11] 
++ dateTime.createdAt.toString()[12] 
++ dateTime.createdAt.toString()[13] 
++ dateTime.createdAt.toString()[14];
+
+let hora = dateTime.createdAt.toString()[16] 
++ dateTime.createdAt.toString()[17] 
++ dateTime.createdAt.toString()[18] 
++ dateTime.createdAt.toString()[19]
++ dateTime.createdAt.toString()[20]
++ dateTime.createdAt.toString()[21]
++ dateTime.createdAt.toString()[22]
++ dateTime.createdAt.toString()[23];
+
+if (mes === 'Jan'){mes = '01';}
+if (mes === 'Feb'){mes = '02';}
+if (mes === 'Mar'){mes = '03';}
+if (mes === 'Apr'){mes = '04';}
+if (mes === 'May'){mes = '05';}
+if (mes === 'Jun'){mes = '06';}
+if (mes === 'Jul'){mes = '07';}
+if (mes === 'Aug'){mes = '08';}
+if (mes === 'Sep'){mes = '09';}
+if (mes === 'Oct'){mes = '10';}
+if (mes === 'Nov'){mes = '11';}
+if (mes === 'Dec'){mes = '12';}
+
+let data = dia + '/' + mes + '/' +  ano + ' ' +  hora
+%>
+
+<td><%= data %></td>

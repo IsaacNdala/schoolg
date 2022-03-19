@@ -1,0 +1,121 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./add-turma.ejs') %>
+
+    <!--DELETE MODAL -->
+    <% if(turmas.length > 0) { %>
+        <% for (let turma of turmas) { %>
+            <%- include('./delete-turma.ejs', {turma: turma }) %>
+    <% } } %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-sort-alpha-asc mr-2"></i> Turmas</h6>
+        <hr class="mb-3">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-sort-alpha-asc"></i> Turmas:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Turma</th>
+                    <th>Curso</th>
+                    <th>Classe</th>
+                    <th>Sala</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Turma</th>
+                    <th>Curso</th>
+                    <th>Classe</th>
+                    <th>Sala</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <% if(turmas.length > 0) { %>
+                       <% for (let turma of turmas) { %>
+                        <tr class="dt-text">
+                            <td><%= turma.designacao %></td>
+                            
+                            <% 
+                                let cursoDesignacao;
+                                if(cursos.length > 0) {
+                                    for (const curso of cursos) {
+                                        if(curso.id === turma.cursoId){
+                                            cursoDesignacao = curso.designacao;
+                                        }
+                                    }
+                                }
+                            %>
+                            <td><%= cursoDesignacao %></td>
+
+                            <% 
+                                let classeDesignacao;
+                                if(classes.length > 0) {
+                                    for (const classe of classes) {
+                                        if(classe.id === turma.classeId){
+                                            classeDesignacao = classe.designacao;
+                                        }
+                                    }
+                                }
+                            %>
+                            <td><%= parseInt(classeDesignacao) === parseInt(classeDesignacao) ? classeDesignacao + 'ª classe' : classeDesignacao %></td>
+
+                            <% 
+                                let salaDesignacao;
+                                if(salas.length > 0) {
+                                    for (const sala of salas) {
+                                        if(sala.id === turma.salaId){
+                                            salaDesignacao = sala.designacao;
+                                        }
+                                    }
+                                }
+                            %>
+                            <td><%= salaDesignacao %></td>
+                            <td class="text-center">
+                                <form action="/turmas/editar" method="POST">
+                                    <input type="hidden" name="turmaId" value="<%= turma.id %>">
+                                    <button type="submit" class="btn btn-dark"><i class="fa fa-pencil"></i></button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" data-toggle="modal" data-target="#deleteTurma<%= turma.id %>" class="btn btn-dark">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="10" class="text-center"><h5>Sem Turmas!</h5></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <a href="#" data-toggle="modal" data-target="#addTurma" class="btn-info add-btn">
+        <i class="fa fa-plus"></i>
+    </a>
+
+<%- include('../includes/footer.ejs') %>

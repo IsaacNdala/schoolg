@@ -1,0 +1,92 @@
+<%- include('../includes/header.ejs') %>
+    <link href="/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <title><%= pageTitle %></title>
+</head>
+<body>
+    <%- include('../includes/header-nav.ejs') %>
+    <%- include('../includes/aside-nav.ejs') %>
+
+    <%- include('./add-encarregado.ejs') %>
+
+    <!--DELETE MODAL -->
+    <% if(encarregados.length > 0) { %>
+        <% for (let encarregado of encarregados) { %>
+            <%- include('./delete-encarregado.ejs', {encarregado: encarregado }) %>
+    <% } } %>
+
+    <section class="main-section">
+        <h6><i class="fa fa-black-tie mr-2"></i> Encarregados</h6>
+        <hr class="mb-3">
+
+        <%- include('../includes/alert.ejs') %>
+
+        <!-- Tabela -->
+        <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold"><i class="fa fa-black-tie"></i> Encarregados:</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Parentesco</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Data/Hora</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Nome</th>
+                    <th>Parentesco</th>
+                    <th>Tel</th>
+                    <th>Email</th>
+                    <th>Data/Hora</th>
+                    <th class="text-center">Editar</th>
+                    <th class="text-center">Excluir</th>
+                </tr>
+                </tfoot>
+                <tbody>
+                    <% if(encarregados.length > 0) { %>
+                       <% for (let encarregado of encarregados) { %>
+                        <tr class="dt-text">
+                            <td><%= encarregado.nome %></td>
+                            <td><%= encarregado.parentesco %></td>
+                            <td><%= encarregado.telefone %></td>
+                            <td><%= encarregado.email %></td>
+                            
+                            <%- include('../includes/data.ejs', {dateTime: encarregado}) %>
+                            <td class="text-center">
+                                <form action="/encarregados/editar" method="POST">
+                                    <input type="hidden" name="encarregadoId" value="<%= encarregado.id %>">
+                                    <button type="submit" class="btn btn-dark"><i class="fa fa-pencil"></i></button>
+                                </form>
+                            </td>
+                            <td class="text-center">
+                                <a href="#" data-toggle="modal" data-target="#deleteEncarregado<%= encarregado.id %>" class="btn btn-dark">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <% } %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="text-center"><h5>Sem Encarregados!</h5></td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <a href="#" data-toggle="modal" data-target="#addEncarregado" class="btn-info add-btn">
+        <i class="fa fa-plus"></i>
+    </a>
+
+<%- include('../includes/footer.ejs') %>

@@ -1,0 +1,86 @@
+<%- include('../includes/header.ejs') %>
+    <title>
+        <%= pageTitle %>
+    </title>
+    </head>
+
+    <body>
+        <%- include('../includes/header-nav.ejs') %>
+            <%- include('../includes/aside-nav.ejs') %>
+
+                <section class="main-section">
+                    <h6><i class="fa fa-dashboard mr-2"></i> Painel de Controle</h6>
+                    <hr class="mb-4">
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 mb-4">
+                                <a href="/alunos">
+                                    <div class="statistic-card border">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-graduation-cap mr-2"></i>
+                                            Alunos
+                                        </div>
+                                        <span><%= alunos.length %></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <a href="/funcionarios">
+                                    <div class="statistic-card border">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-users mr-2"></i>
+                                            Funcionários
+                                        </div>
+                                        <span><%= funcionarios.length %></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <a href="/professores">
+                                    <div class="statistic-card border">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-user mr-2"></i>
+                                            Professores
+                                        </div>
+                                        <span><%= professores.length %></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <a href="/cursos">
+                                    <div class="statistic-card border">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-flask mr-2"></i>
+                                            Cursos
+                                        </div>
+                                        <span><%= cursos.length %></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <a href="/encarregados">
+                                    <div class="statistic-card border">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-black-tie mr-2"></i>
+                                            Encarregados
+                                        </div>
+                                        <span><%= encarregados.length %></span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 mb-4">
+                                <a href="/disciplinas">
+                                    <div class="statistic-card border">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                            <i class="fa fa-book mr-2"></i>
+                                            Disciplinas
+                                        </div>
+                                        <span><%= disciplinas.length %></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <%- include('../includes/footer.ejs', {path: path}) %>

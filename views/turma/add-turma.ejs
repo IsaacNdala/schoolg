@@ -1,0 +1,62 @@
+<div class="modal fade" id="addTurma" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <form action="/turmas/add" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title font-weight-bold"><i class="fa fa-plus-circle"></i> Adicionar Turma</h7>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-lg-5">
+                        <label for="tdesignacao">Turma</label>
+                        <input type="text" class="form-control" name="tdesignacao" id="tdesignacao" placeholder="Turma" maxlength="120" required>                    
+                    </div>
+                    <div class="form-group col-lg-7">
+                        <label for="cursoId">Curso</label>
+                        <select name="cursoId" id="cursoId" class="form-control" required>
+                            <option></option>
+                            <% if (cursos.length > 0) { %>
+                                <% for (const curso of cursos) { %>
+                                    <option value="<%= curso.id %>"><%= curso.designacao %></option>
+                                <% } %>
+                            <% } %>
+                        </select>  
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-4">
+                        <label for="classeId">Classe</label>
+                        <select name="classeId" id="classeId" class="form-control" required>
+                            <option></option>
+                            <% if (classes.length > 0) { %>
+                                <% for (const classe of classes) { %>
+                                    <option value="<%= classe.id %>">
+                                        <%= parseInt(classe.designacao) === parseInt(classe.designacao) ? classe.designacao + 'ª classe' : classe.designacao %>
+                                    </option>
+                                <% } %>
+                            <% } %>
+                        </select>  
+                    </div>
+                    <div class="form-group col-lg-4">
+                        <label for="salaId">Sala</label>
+                        <select name="salaId" id="salaId" class="form-control" required>
+                            <option></option>
+                            <% if (salas.length > 0) { %>
+                                <% for (const sala of salas) { %>
+                                    <option value="<%= sala.id %>"><%= sala.designacao %></option>
+                                <% } %>
+                            <% } %>
+                        </select>  
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger"><i class="fa fa-trash-o"></i> Limpar</button>
+                <button type="submit" id="enviar" class="btn btn-info"><i class="fa fa-plus-circle"></i> Adicionar</button>
+            </div>
+        </form>
+    </div>
+</div>

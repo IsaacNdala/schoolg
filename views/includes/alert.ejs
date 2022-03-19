@@ -1,0 +1,15 @@
+<% if (msgSuccess.length > 0) { msgSuccess = msgSuccess[0] %>
+    <div class="alert alert-success alert-dismissible mb-4">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-info"></i> Info:</h4>
+        <%= msgSuccess %>
+    </div>
+<% } else { msgSuccess = null } %>
+
+<% if (msgError.length > 0) { msgError = msgError[0] %>
+    <div class="alert alert-danger alert-dismissible mb-4">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4><i class="icon fa fa-info"></i> Info:</h4>
+        <%= msgError %>
+    </div>
+<% } else { msgError = null } %>

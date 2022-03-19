@@ -1,0 +1,35 @@
+<div class="modal fade" id="contactos" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-md" role="document">
+        <form action="/perfil/contactos/edit" method="POST" class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title font-weight-bold"><i class="fa fa-phone"></i> Contactos</h7>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-lg-6 mt-1">
+                        <label for="telefone">Telefone</label>
+                        <input type="number" class="form-control" name="telefone" id="telefone" placeholder="Seu nº do telefone" value="<%= loggedFun.telefone %>" required>
+                    </div>
+
+                    <div class="form-group col-lg-6 mt-1">
+                        <label for="email">Email</label>
+                        <% if(loggedFun.email === 'demo@user.com') { %>
+                        <input type="email" disabled class="form-control" name="email" id="email" placeholder="Seu e-mail" value="<%= loggedFun.email %>" required>
+                        <% } else { %>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Seu e-mail" value="<%= loggedFun.email %>" required>
+                        <% } %>
+                    </div>
+                </div>
+                <input type="hidden" name="funId" value="<%= loggedFun.id %>">
+            </div>
+            <div class="modal-footer">
+                <button type="reset" class="btn btn-danger" data-dismiss="modal"> Cancelar</button>
+                <button type="submit" class="btn btn-info"><i class="fa fa-pencil"></i> Editar</button>
+            </div>
+        </form>
+    </div>
+</div>
