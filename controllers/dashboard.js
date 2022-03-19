@@ -18,7 +18,7 @@ exports.getDashboard = (req, res, next) => {
                                             Disciplina.findAll()
                                                 .then(disciplinas => {
                                                     res.render('dashboard/dashboard', {
-                                                        pageTitle: 'Painel de Control',
+                                                        pageTitle: 'Painel de Controle',
                                                         path: '/dashboard',
                                                         alunos: alunos,
                                                         encarregados: encarregados,
