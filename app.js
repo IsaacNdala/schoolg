@@ -10,7 +10,7 @@ const compression = require('compression');
 const morgan = require('morgan');
 const fs = require('fs');
 
-const port = 3000 || process.env.PORT
+const port = process.env.PORT || 300
 
 // IMPORTING PAIGES
 const errController = require('./controllers/404');
