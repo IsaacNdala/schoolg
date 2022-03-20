@@ -25,7 +25,7 @@ Schoolg is a basic school management application that allow users (funcionarios)
 * [MySQL](https://www.mysql.com/)
 
 ## Live Demo
-[Live Demo Link](https://chocolifenet.netlify.app/index.html)
+[Live Demo Link](https://schoolgnet.herokuapp.com/login)
 
 ## Getting Started
 To get started follow these steps.
