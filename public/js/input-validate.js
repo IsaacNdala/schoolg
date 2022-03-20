@@ -3,8 +3,6 @@ $(document).ready(function () {
     var confirmPassword = $('#confirmPassword');
     var label = $('label[for="confirmPassword"]');
 
-    console.log(password)
-
     password.keyup(function () {
         console.log(password.val())
         if (password.val() !== confirmPassword.val()) {

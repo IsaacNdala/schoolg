@@ -5,6 +5,10 @@ const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const helmet = require('helmet');
+const compression = require('compression');
+const morgan = require('morgan');
+const fs = require('fs');
 
 const port = 3000 || process.env.PORT
 
@@ -21,15 +25,22 @@ const db = require('./database/db');
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+const accessLog = fs.createWriteStream(
+    path.join(__dirname, 'access.log'),
+    { flags: 'a' })
+
+app.use(compression());
+app.use(morgan('combined', { stream: accessLog }));
+
 // SESSION
-app.use( 
+app.use(
     session({
-    secret: 'thi$block&d4you',
-    resave: true,
-    saveUninitialized: true,
+        secret: 'thi$block&d4you',
+        resave: true,
+        saveUninitialized: true,
     })
 );
 app.use(flash());
@@ -43,7 +54,7 @@ app.use((req, res, next) => {
         .then(user => {
             return req.user = user;
         }).then(result => {
-            return Funcionario.findAll({where: {email: req.session.user.email}});
+            return Funcionario.findAll({ where: { email: req.session.user.email } });
         }).then(fun => {
             req.fun = fun[0];
             Funcao.findByPk(fun[0].funcaoId)
@@ -62,7 +73,7 @@ app.use((req, res, next) => {
     res.locals.loggedUser = req.user;
     res.locals.loggedFun = req.fun;
     res.locals.loggedFuncao = req.funcao;
-    next(); 
+    next();
 });
 
 // ROUTES
@@ -70,9 +81,9 @@ app.use(routes);
 app.use(errController.get404);
 
 db
-// .sync({force: true})
-.sync()
-.then((result) => {
+    // .sync({force: true})
+    .sync()
+    .then((result) => {
         app.listen(port);
     }).catch((err) => {
         console.log(err);
