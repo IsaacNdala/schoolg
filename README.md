@@ -26,8 +26,10 @@ Schoolg is a basic school management application that allow users (funcionarios)
 
 ## Live Demo
 You can access the application using the test credentials: 
-email: demo@user.com
-password: demouser123
+
+Email: demo@user.com
+
+Password: demouser123
 
 [Application Link](https://schoolgnet.herokuapp.com/login)
 
