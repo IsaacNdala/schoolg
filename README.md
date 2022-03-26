@@ -25,7 +25,11 @@ Schoolg is a basic school management application that allow users (funcionarios)
 * [MySQL](https://www.mysql.com/)
 
 ## Live Demo
-[Live Demo Link](https://schoolgnet.herokuapp.com/login)
+You can access the application using the test credentials: 
+email: demo@user.com
+password: demouser123
+
+[Application Link](https://schoolgnet.herokuapp.com/login)
 
 ## Getting Started
 To get started follow these steps.
