@@ -34,19 +34,23 @@ Password: demouser123
 [Application Link](https://schoolgnet.herokuapp.com/login)
 
 ## Getting Started
-To get started follow these steps.
+To get started follow the Prerequisites and Installation.
 
-1. On the project GitHub page, navigate to the main page of the repository.
-2. Under the repository name, locate and click on a green button named <kbd>Code</kbd>.
-3. Copy the project URL as displayed.
-4. If you're running the Windows Operating System, open your command prompt. On Linux or macOS, Open your terminal.
-5. Change the current working directory to the location where you want the cloned directory to be made typing <kbd>cd directory_name</kbd>. Leave as it is if the current location is where you want the project to be.
-6. Type git clone, and then paste the URL you copied in Step 3.
-e.g. $ git clone <kbd>git@github.com:IsaacNdala/schoolg.git</kbd>
-7. Press Enter. Your local copy will be created.
-8. Move to the project's folder typing <kbd>cd schoolg</kbd>.
-9. Then use <kbd>npm install</kbd> command to install all the project's dependencies.
-10. With all that in place run <kbd>npm start</kbd> to start the application.
+### Prerequisites
+As prerequisites you must have installed on your machine:
+
+1. [Node.js](https://nodejs.org/en/)
+3. [MySQL](https://www.mysql.com/downloads/) (with Workbench preferible)
+
+
+### Installation
+1. Clone the repository <pre>git clone git@github.com:IsaacNdala/schoolg.git</pre>
+3. Install all the project's dependencies <pre>npm install</pre>
+5. Create a database called <kbd>shcoolg</kbd> on your MysQL server.
+7. Use de dump <kbd>schoolg.sql</kbd> located in <kbd>database</kbd> folder and import it in your newly created database.
+9. Still in <kbd>database</kbd> folder open <kbd>db.js</kbd> to configure the connection for your local MySQL user and password, if there is no one leave it as it is.
+6. Start the application <pre>npm start</pre>
+8. Check the application on http://localhost:3000
 
 ## Author
 👤 <b>Isaac Ndala</b>
