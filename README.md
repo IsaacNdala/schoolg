@@ -50,7 +50,7 @@ As prerequisites you must have installed on your machine:
 7. Use de dump <kbd>schoolg.sql</kbd> located in <kbd>database</kbd> folder and import it in your newly created database.
 9. Still in <kbd>database</kbd> folder open <kbd>db.js</kbd> to configure the connection for your local MySQL user and password, if there is no one leave it as it is.
 6. Start the application <pre>npm start</pre>
-8. Now check the application on http://localhost:3000
+8. Check the application on http://localhost:3000
 
 ## Author
 👤 <b>Isaac Ndala</b>
