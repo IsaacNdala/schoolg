@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 
-const connection = new Sequelize('schoolgdb_db', 'schoolgdb_user', 'Za5KFgvYg9iSx@Z', {
+const connection = new Sequelize('schoolg', '', '', {
     dialect: 'mysql',
-    host: 'mysql-schoolgdb.alwaysdata.net'
+    host: 'localhost'
 });
 
 module.exports = connection;
